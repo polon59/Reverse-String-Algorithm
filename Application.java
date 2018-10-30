@@ -30,7 +30,7 @@ public class Application {
         int normIndex = 0;
         int specIndex = 0;
 
-        for (int i = 0; i < splittedString.length-1; i++){
+        for (int i = 0; i < splittedString.length; i++){
             if (Character.isLetter(splittedString[i])){
                 readyOrder.add(normCharListRev.get(normIndex));
                 normIndex++;

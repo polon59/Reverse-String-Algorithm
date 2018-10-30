@@ -1,33 +1,68 @@
-/**
- * Application
- */
-import java.lang.StringBuilder;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.*;
 
 public class Application {
 
     public String reverseString(String str){
-        String [] characters = str.split("");
-        String[] reversed = new String[characters.length];
-        int frontIndex = 0;
 
-        for (int backIndex = characters.length-1; backIndex >=0; backIndex--) {
-            if (Character.isLetter(str.charAt(backIndex))) {
-                reversed[frontIndex] = characters[backIndex];
-            }else{
-                reversed[backIndex] = characters[backIndex];
+        Character[] splittedString = str.chars().mapToObj(c -> (char)c).toArray(Character[]::new);
+        
+        List<Character> specCharList = new ArrayList<>();
+        List<Character> normCharList = new ArrayList<>();
+        List<Character> normCharListRev = new ArrayList<>();
+        List<Character> readyOrder = new ArrayList<>();
+
+        
+        for (Character character : splittedString){
+            if (Character.isLetter(character)) {
+                normCharList.add(character);
             }
-            frontIndex ++;
-            System.out.println(frontIndex);
-
+            else{
+                specCharList.add(character);
+            }
         }
 
-        String reversedString = "";
-
-        for (String character : reversed) {
-            reversedString += character;
+        for (int i = normCharList.size()-1; i >= 0; i-- ) {
+            normCharListRev.add(normCharList.get(i));
         }
 
-        return reversedString;
+        int normIndex = 0;
+        int specIndex = 0;
+
+        for (int i = 0; i < splittedString.length-1; i++){
+            if (Character.isLetter(splittedString[i])){
+                readyOrder.add(normCharListRev.get(normIndex));
+                normIndex++;
+            }
+            else{
+                readyOrder.add(specCharList.get(specIndex));
+                specIndex++;
+            }
+        }
+
+        for (Character c : readyOrder) {
+            System.out.println(c);
+        }
+
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+        String readyString = "";
+
+
+        return readyString;
 
     }
 }
